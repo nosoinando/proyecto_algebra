@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ejercicio 1 — Programación Lineal</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="custom.css">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="../dashboard.html">ÁlgebraLineal.io</a>
+    <div>
+      <a class="btn btn-light btn-sm" href="../dashboard.html">Dashboard</a>
+      <a class="btn btn-outline-light btn-sm" href="../lecciones.html">Lecciones</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-4">
+  <div class="card mb-4">
+    <div class="card-body">
+      <h4>Ejercicio 1 — Producción y maximización</h4>
+      <p>
+        Una fábrica produce dos productos P1 y P2. Cada unidad de P1 genera una ganancia de 50 y cada unidad de P2 genera 35.
+        La máquina disponible ofrece 100 horas; P1 usa 3h por unidad, P2 usa 2h. La mano de obra disponible es 80 horas; P1 usa 1h, P2 usa 2h.
+        La demanda máxima de P2 es 30 unidades.
+        Formular el modelo de programación lineal para <strong>maximizar</strong> ganancias.
+      </p>
+    </div>
+  </div>
+
+  <!-- Respuesta -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5>Tu respuesta</h5>
+
+      <div class="mb-2">
+        <label class="form-label">Función objetivo:</label>
+        <input id="obj1" class="form-control" placeholder="Ej: Z = 50x1 + 35x2">
+      </div>
+
+      <div class="mb-2">
+        <label class="form-label">Restricción 1 (máquina):</label>
+        <input id="r11" class="form-control" placeholder="Ej: 3x1 + 2x2 <= 100">
+      </div>
+
+      <div class="mb-2">
+        <label class="form-label">Restricción 2 (mano de obra):</label>
+        <input id="r12" class="form-control" placeholder="Ej: x1 + 2x2 <= 80">
+      </div>
+
+      <div class="mb-2">
+        <label class="form-label">Restricción 3 (demanda):</label>
+        <input id="r13" class="form-control" placeholder="Ej: x2 <= 30">
+      </div>
+
+      <div class="mt-3">
+        <button id="check1" class="btn btn-primary">Verificar</button>
+        <a class="btn btn-secondary" href="ejercicio2.html">Siguiente →</a>
+      </div>
+
+      <div id="feedback1" class="mt-3"></div>
+    </div>
+  </div>
+</div>
+
+<script src="../../scripts/ejercicios.js"></script>
+<script>
+  // inicializa la verificación con id '1'
+  window.addEventListener('DOMContentLoaded', ()=> {
+    Ejercicios.initEjercicio({
+      id: 1,
+      objetivoCorrecto: {coeffs: [50,35], sign: 'max'},
+      restricciones: [
+        {coeffs: [3,2], op: '<=', rhs: 100},
+        {coeffs: [1,2], op: '<=', rhs: 80},
+        {coeffs: [0,1], op: '<=', rhs: 30} // 0*x1 + 1*x2 <= 30 -> x2 <= 30
+      ],
+      inputs: {obj:'#obj1', r1:'#r11', r2:'#r12', r3:'#r13', feedback:'#feedback1', btn:'#check1'}
+    });
+  });
+</script>
+
+</body>
+</html>
